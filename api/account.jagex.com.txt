@@ -1,0 +1,51 @@
+/.well-known/openid-configuration
+    standard openid endpoint, information available online
+    returns some information about endpoints
+
+/oauth2/auth
+    standard openid endpoint
+    i'm currently not intereacting with this endpoint directly, so i'm not too worried about it just yet
+
+/oauth2/token
+    standard openid endpoint
+    used for authorization_code and refresh_token requests
+    POST method
+        refresh, html form data
+            client_id = "com_jagex_auth_desktop_launcher"
+            grant_type = "refresh_token"
+            refresh_token = current refresh_token
+               
+        authorization_code, html form data
+            grant_type = "authorization_code"
+            client_id = "com_jagex_auth_desktop_launcher"
+            code = the 'code' returned by the /oauth2/auth endpoint
+            code_verifier = the 'code_verifier' used to generate the 'code_challenge' in the /oauth2/auth url
+            redirect_uri = "https://secure.runescape.com/m=weblogin/launcher-redirect" this doesn't matter to me, but the server will complain if this isn't correct
+        
+        returns json object
+                access_token = token used to authenticate api calls
+                expires_in = timeout until new tokens are required, refreshed with refresh_token request
+                id_token = rfc7519 json web token, details unclear
+                refresh_token = token used for sending the next refresh_token request
+                scope = "offline openid user.profile.read gamesso.token.create" openid stuff, don't really know what it means, don't think it matters
+                token_type = "bearer" Bearer is the type of http authentication used in api calls
+
+/oauth2/revoke
+    standard openid endpoint
+    revokes an access_token
+    POST method, html form data
+        token = current refresh_token
+        returns 200 OK
+
+/userinfo
+    standard openid endpoint
+    Authorization: Bearer access_token
+    GET method
+        returns json object
+            amr = authentication method reference
+            aud = audience
+            auth_time
+            iat = issued at timestamp
+            iss = issuer
+            rat = requested at timestamp
+            sub = subject

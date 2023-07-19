@@ -1,0 +1,8 @@
+/v1/users/{userId}/displayName
+    Authorization: Bearer access_token
+    GET method
+    returns json object
+        id = it's an id, not sure if it's used for anything
+        userId = the same userId from the url
+        displayName = The first half of the Name:1234 handle
+        suffix = The second half of the Name:1234 handle

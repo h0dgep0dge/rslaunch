@@ -1,0 +1,21 @@
+/game-session/v1/accounts
+    Authorization: Bearer token // sessionId from /game-sessions/v1/sessions
+    GET method
+    returns json array of account objects, each object as follows (these are in-game accounts)
+        id = an id
+        accountId = JX_CHARACTER_ID the id for the respective character
+        displayName = JX_DISPLAY_NAME the rsn for the respective character
+
+
+/game-sessions/v1/sessions
+    POST method, json object data
+        idToken = rfc7519 json web token, but a different one than is returned by account/oauth2/token
+    returns json object
+        sessionId = JX_SESSION_ID
+
+/game-sessions/v1/tokens
+    Authorization: Bearer token // sessionId from /game-sessions/v1/sessions
+    POST method, json object data
+        accountId
+    returns json object
+        token =  a token of some kind, don't know what it's used for
