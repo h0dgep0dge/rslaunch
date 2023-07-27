@@ -33,7 +33,7 @@ x = requests.post("https://account.jagex.com/oauth2/token",data=post_data).text
 jwt = json.loads(x)['id_token']
 nonce = ''.join(random.choice(string.ascii_letters+string.digits) for i in range(48))
 
-print("Go to this url, log in, and bring me back your 'id_token'\n")
+print("Go to this url, let it do its thing, and bring me back your 'id_token'\n")
 print("https://account.jagex.com/oauth2/auth?id_token_hint="+jwt+"&nonce="+nonce+"&prompt=consent&redirect_uri=http%3A%2F%2Flocalhost&response_type=id_token+code&state="+auth_state+"&client_id=1fddee4e-b100-4f4e-b2b0-097f9088f9d2&scope=openid+offline\n\n")
 id_token = input("id_token: ")
 
