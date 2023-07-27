@@ -1,0 +1,14 @@
+email: h0dg3p0dge72@gmail.com
+account name: h0dg3p0dg3#4424
+password: jazzysystem16
+
+character name: 35death2628
+
+auth code: CGTUP
+
+env vars passed to runelite
+    JX_ACCESS_TOKEN	
+    JX_CHARACTER_ID	339057055
+    JX_DISPLAY_NAME	35death2628
+    JX_REFRESH_TOKEN
+    JX_SESSION_ID	xn1sLujT6DpN37UzrhSX0

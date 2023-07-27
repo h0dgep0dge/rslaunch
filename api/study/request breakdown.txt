@@ -1,0 +1,124 @@
+GET /.well-known/openid-configuration
+
+GET /oauth2/auth
+    auth_method=
+    login_type=
+    flow=launcher
+    response_type=code
+    client_id=com_jagex_auth_desktop_launcher
+    redirect_uri=https%3A%2F%2Fsecure.runescape.com%2Fm%3Dweblogin%2Flauncher-redirect
+    code_challenge=qMkCcrvKzxlVTml_tv7Q_on0L2MVjArs_1a7XbnNod8
+    code_challenge_method=S256
+    prompt=login
+    scope=openid+offline+gamesso.token.create+user.profile.read
+    state=wJCgGGnwLkIk
+  after a series of redirects, returns
+    303 See Other secure.runescape.com
+      code=fJikMHTB9Zd2wkf4Tr1wFIJV1h6JBBw7d_JPJIqYH3o.NPXsBbXySA_xIK17HHLX9KL8tDc0L8HBmOQG-ysYRgc
+      scope=offline+openid+user.profile.read+gamesso.token.create
+      state=wJCgGGnwLkIk
+
+POST /oauth2/token
+    grant_type=authorization_code
+    client_id=com_jagex_auth_desktop_launcher
+    code=fJikMHTB9Zd2wkf4Tr1wFIJV1h6JBBw7d_JPJIqYH3o.NPXsBbXySA_xIK17HHLX9KL8tDc0L8HBmOQG-ysYRgc
+    code_verifier=XfcrD64R6ej-xncfZ1L0uvi4TU.JzEzZzxSkFlhwn4d
+    redirect_uri=https%3A%2F%2Fsecure.runescape.com%2Fm%3Dweblogin%2Flauncher-redirect
+  returns
+    {
+      "access_token":"6IinyhYYg-G2eT31fDhfytRPpSN4GGYsRQsyTpqs_gA.i65HcDVFCrp8Mm1vqpZ8IS1Ko5q2A3DzXUVAY_yoqfc",
+      "expires_in":1799,
+      "id_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6InB1YmxpYzpmYjc3NDA4OS02NzljLTQ2OGItOTE0MS04NzFhYWI5MTBkZWMiLCJ0eXAiOiJKV1QifQ.eyJhbXIiOlsibG9naW46Y3JlZGVudGlhbHMiLCJtZmE6ZW1haWwiXSwiYXRfaGFzaCI6IkN2MDRSSDZZS1RIMWMwVTlHX0ZPUmciLCJhdWQiOlsiY29tX2phZ2V4X2F1dGhfZGVza3RvcF9sYXVuY2hlciJdLCJhdXRoX3RpbWUiOjE2OTAzNjI1NzAsImV4cCI6MTY5MDM2NDM3MywiaWF0IjoxNjkwMzYyNTczLCJpc3MiOiJodHRwczovL2FjY291bnQuamFnZXguY29tLyIsImp0aSI6IjIzYzA1NTE0LTljNTItNDYyZi1hZThmLTllZDBhNWM4Y2NmMiIsInJhdCI6MTY5MDM2MjUyNywic2lkIjoiNDZiMDg2YWQtZGQ4Zi00YzY4LTk5N2MtMzU4ZWUzZDAxZDg5Iiwic3ViIjoiMkdDbHN0RDFGUjBVSjRQSFA4c2NLciJ9.XDhTK7bAhclJLnq_jIOw7FvmfA3CE_OUqnAQH0uC3E5OQRRxbovdi3bEi6-Gi9WeXWhUsXqJl1Z3uV2TVk_mXk5F53H_NdojiaVHxZJrzCwSJTOq8jB973tKr_D_Ly56Q_d0A_kinTmDSPlckWw6ebUmKPwAN1gkTXbtrEWlejGtF-YvgBuWW82xOkqXvZHZUrHF4Ap-EafOVtkH7YKtKPo61bAwJWqnOYMm0VY64Ux8qcBrznuaY8u07JWBCol9y8L_j4p3oNNL0NkdIlsxHnQSt04Ub5WuM1s3zr3FTTovlKFmR7nXQSEdA6JGdRvG9JdGGf3QOHRdNm7Y2O636n8uPzjF6qttQDCcMuoodYi2ESNEZkxWQpme45_wWtCpuFCz4moY6wLuR-V_p_tnXE6-uz1HqXxZOJ1SngRJE1MEzScwcEu8rdZZNHlfA5bP_s47me1ptJDZRBVCxXATqYjY2iDKzYx9p0PtISZZKIoaHemU4chRL7cykEdU87ozQMJFvt1iyGn9zrXFPRGgFBFGAb7vZIPYHUqbDwUNQzSPpOPb5F3mKNQ9BFCbbEXm3bTUF2DKPplCNzrZYSs_k5_79red7AYsczAzuAKZrywcd0uiS_mrnsjg1ZW2SPyS1MSsQ9l1boVpnpa9X-t4Wa6GKx7QqkMuel5nwAMkC44",
+      "refresh_token":"YN5uGRFbXScIQfZTozxdHj8HTsh78kuf4hty5K8n7-w.ycoIcHRnDmH5_onL8a8pLTAq2fo6nFsSPOBYS9cBAGc",
+      "scope":"offline openid user.profile.read gamesso.token.create",
+      "token_type":"bearer"
+    }
+
+GET /v1/users/2GClstD1FR0UJ4PHP8scKr/displayName
+    Authorization: Bearer 6IinyhYYg-G2eT31fDhfytRPpSN4GGYsRQsyTpqs_gA.i65HcDVFCrp8Mm1vqpZ8IS1Ko5q2A3DzXUVAY_yoqfc
+    # ^ authorization is access_token from /oauth2/token
+  returns
+    {
+      "id":"5cpwDNevEuz6wCRUvC0wyu",
+      "userId":"2GClstD1FR0UJ4PHP8scKr",
+      "displayName":"h0dg3p0dg3",
+      "suffix":"4424"
+    }
+
+GET /oauth2/auth
+    id_token_hint=eyJhbGciOiJSUzI1NiIsImtpZCI6InB1YmxpYzpmYjc3NDA4OS02NzljLTQ2OGItOTE0MS04NzFhYWI5MTBkZWMiLCJ0eXAiOiJKV1QifQ.eyJhbXIiOlsibG9naW46Y3JlZGVudGlhbHMiLCJtZmE6ZW1haWwiXSwiYXRfaGFzaCI6IkN2MDRSSDZZS1RIMWMwVTlHX0ZPUmciLCJhdWQiOlsiY29tX2phZ2V4X2F1dGhfZGVza3RvcF9sYXVuY2hlciJdLCJhdXRoX3RpbWUiOjE2OTAzNjI1NzAsImV4cCI6MTY5MDM2NDM3MywiaWF0IjoxNjkwMzYyNTczLCJpc3MiOiJodHRwczovL2FjY291bnQuamFnZXguY29tLyIsImp0aSI6IjIzYzA1NTE0LTljNTItNDYyZi1hZThmLTllZDBhNWM4Y2NmMiIsInJhdCI6MTY5MDM2MjUyNywic2lkIjoiNDZiMDg2YWQtZGQ4Zi00YzY4LTk5N2MtMzU4ZWUzZDAxZDg5Iiwic3ViIjoiMkdDbHN0RDFGUjBVSjRQSFA4c2NLciJ9.XDhTK7bAhclJLnq_jIOw7FvmfA3CE_OUqnAQH0uC3E5OQRRxbovdi3bEi6-Gi9WeXWhUsXqJl1Z3uV2TVk_mXk5F53H_NdojiaVHxZJrzCwSJTOq8jB973tKr_D_Ly56Q_d0A_kinTmDSPlckWw6ebUmKPwAN1gkTXbtrEWlejGtF-YvgBuWW82xOkqXvZHZUrHF4Ap-EafOVtkH7YKtKPo61bAwJWqnOYMm0VY64Ux8qcBrznuaY8u07JWBCol9y8L_j4p3oNNL0NkdIlsxHnQSt04Ub5WuM1s3zr3FTTovlKFmR7nXQSEdA6JGdRvG9JdGGf3QOHRdNm7Y2O636n8uPzjF6qttQDCcMuoodYi2ESNEZkxWQpme45_wWtCpuFCz4moY6wLuR-V_p_tnXE6-uz1HqXxZOJ1SngRJE1MEzScwcEu8rdZZNHlfA5bP_s47me1ptJDZRBVCxXATqYjY2iDKzYx9p0PtISZZKIoaHemU4chRL7cykEdU87ozQMJFvt1iyGn9zrXFPRGgFBFGAb7vZIPYHUqbDwUNQzSPpOPb5F3mKNQ9BFCbbEXm3bTUF2DKPplCNzrZYSs_k5_79red7AYsczAzuAKZrywcd0uiS_mrnsjg1ZW2SPyS1MSsQ9l1boVpnpa9X-t4Wa6GKx7QqkMuel5nwAMkC44
+	# ^ id_token_hint is id_token from /oauth2/token
+    nonce=MDRmOTY3MTAtNTM5My00YzA0LWEzOTctM2ExZjk5ODMwNmJk
+    prompt=consent
+    redirect_uri=http%3A%2F%2Flocalhost
+    response_type=id_token+code
+    state=GDvBMkGbJttN
+    client_id=1fddee4e-b100-4f4e-b2b0-097f9088f9d2
+    scope=openid+offline
+  after a series of redirects, returns
+    303 See Other localhost
+      code=xG0lMyMDKBfJeOrQN77SCaVgvGpsarKQiE2VpDjUa8s.7X0Tz59kVonpRPF1sJh7UEaLOtRi5uK6-in_Hr5PunE
+      id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6InB1YmxpYzpmYjc3NDA4OS02NzljLTQ2OGItOTE0MS04NzFhYWI5MTBkZWMiLCJ0eXAiOiJKV1QifQ.eyJhbXIiOlsibG9naW46c2lsZW50Il0sImF1ZCI6WyIxZmRkZWU0ZS1iMTAwLTRmNGUtYjJiMC0wOTdmOTA4OGY5ZDIiXSwiYXV0aF90aW1lIjoxNjkwMzYyNTcwLCJjX2hhc2giOiIyOVlVb2RSQ1RlZnZiMng4eVZhbjFnIiwiZXhwIjoxNjkwMzY2MTc4LCJpYXQiOjE2OTAzNjI1NzgsImlzcyI6Imh0dHBzOi8vYWNjb3VudC5qYWdleC5jb20vIiwianRpIjoiMDY1ZGUzOTUtOWFjNC00NGNjLWIxYjYtZDM2NGQzN2FkZDkxIiwibm9uY2UiOiJNRFJtT1RZM01UQXROVE01TXkwMFl6QTBMV0V6T1RjdE0yRXhaams1T0RNd05tSmsiLCJyYXQiOjE2OTAzNjI1NzUsInNpZCI6IjQ2YjA4NmFkLWRkOGYtNGM2OC05OTdjLTM1OGVlM2QwMWQ4OSIsInN1YiI6IjJHQ2xzdEQxRlIwVUo0UEhQOHNjS3IifQ.Tk3-Iwr0Si5GlTZe4URjAQ0fsnTL50ez6YObh3-ULuRsmAm6_CgfB4pOXbOxQqTV36IGocao_oGgnqTgWvvVLyz0ozIP6zCuQ1e26cZHhXCEK_7XAcKtfO58CQa_a01KHkdAnNyosWYtPFdbiC_P1K11xckhnDUjmxrdjUcOGSy67new7ORtQ3fayoq4B6ZO3ipDve7vdqAuGfgQ5Ko5i9IM1wQXgo0BHLPsmh5FSrmAXb5n0HDfqN-LCbp9q2vcb5x6n7zq0oYW5srVOIg3PrVs03Zon-8cuRk7xzU0n0SzE4EE00IHC3imjWShf6A14s2CfW3QMe5gJwKPAmnmRnZwytq33SHHoi6okth6NggZVXI0rApW7_crfIUDmvm6axl-WidnpZpP3BLtD2XKtxljgUoUj553ztP1s6POQ5xRNrZHhIkhH79FB2GF58xr13gke8kNH1SFVB-4Pj6gMtIIyYP9ObMi2ZfmeBbP_sVxkDF7wGoSlY13Mg2JQROxoSzvHYqQ9Ox-0QfMd9Rp8mm7o656vfX6H0-XMuA0w2ZBdIKnYBNWRndhDl5MleOExeb_ZeyJ-bai29-mi34Ec4KVgF3uu5JZMt2BG-2GVVBOz0LnPUjwwCAkm2JLIN4JQ1n4N6LCqAOrBAxb0cxHzTdRS2KsA5QR4Um7y5Nnp54
+      state=GDvBMkGbJttN
+
+POST /game-session/v1/sessions
+    {
+      "idToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6InB1YmxpYzpmYjc3NDA4OS02NzljLTQ2OGItOTE0MS04NzFhYWI5MTBkZWMiLCJ0eXAiOiJKV1QifQ.eyJhbXIiOlsibG9naW46c2lsZW50Il0sImF1ZCI6WyIxZmRkZWU0ZS1iMTAwLTRmNGUtYjJiMC0wOTdmOTA4OGY5ZDIiXSwiYXV0aF90aW1lIjoxNjkwMzYyNTcwLCJjX2hhc2giOiIyOVlVb2RSQ1RlZnZiMng4eVZhbjFnIiwiZXhwIjoxNjkwMzY2MTc4LCJpYXQiOjE2OTAzNjI1NzgsImlzcyI6Imh0dHBzOi8vYWNjb3VudC5qYWdleC5jb20vIiwianRpIjoiMDY1ZGUzOTUtOWFjNC00NGNjLWIxYjYtZDM2NGQzN2FkZDkxIiwibm9uY2UiOiJNRFJtT1RZM01UQXROVE01TXkwMFl6QTBMV0V6T1RjdE0yRXhaams1T0RNd05tSmsiLCJyYXQiOjE2OTAzNjI1NzUsInNpZCI6IjQ2YjA4NmFkLWRkOGYtNGM2OC05OTdjLTM1OGVlM2QwMWQ4OSIsInN1YiI6IjJHQ2xzdEQxRlIwVUo0UEhQOHNjS3IifQ.Tk3-Iwr0Si5GlTZe4URjAQ0fsnTL50ez6YObh3-ULuRsmAm6_CgfB4pOXbOxQqTV36IGocao_oGgnqTgWvvVLyz0ozIP6zCuQ1e26cZHhXCEK_7XAcKtfO58CQa_a01KHkdAnNyosWYtPFdbiC_P1K11xckhnDUjmxrdjUcOGSy67new7ORtQ3fayoq4B6ZO3ipDve7vdqAuGfgQ5Ko5i9IM1wQXgo0BHLPsmh5FSrmAXb5n0HDfqN-LCbp9q2vcb5x6n7zq0oYW5srVOIg3PrVs03Zon-8cuRk7xzU0n0SzE4EE00IHC3imjWShf6A14s2CfW3QMe5gJwKPAmnmRnZwytq33SHHoi6okth6NggZVXI0rApW7_crfIUDmvm6axl-WidnpZpP3BLtD2XKtxljgUoUj553ztP1s6POQ5xRNrZHhIkhH79FB2GF58xr13gke8kNH1SFVB-4Pj6gMtIIyYP9ObMi2ZfmeBbP_sVxkDF7wGoSlY13Mg2JQROxoSzvHYqQ9Ox-0QfMd9Rp8mm7o656vfX6H0-XMuA0w2ZBdIKnYBNWRndhDl5MleOExeb_ZeyJ-bai29-mi34Ec4KVgF3uu5JZMt2BG-2GVVBOz0LnPUjwwCAkm2JLIN4JQ1n4N6LCqAOrBAxb0cxHzTdRS2KsA5QR4Um7y5Nnp54"
+    }
+  returns
+    { "sessionId":"xn1sLujT6DpN37UzrhSX0" } # this is the JX_SESSION_ID passed to runelite
+
+GET /game-session/v1/accounts
+    Authorization: Bearer xn1sLujT6DpN37UzrhSX0 # sessionId from /game-session/v1/sessions
+  returns
+    [
+      {"accountId":"339057055","displayName":"35death2628"} # JX_CHARACTER_ID and JX_DISPLAY_NAME passed to runelite
+    ]
+
+GET /userinfo
+    Authorization: Bearer 6IinyhYYg-G2eT31fDhfytRPpSN4GGYsRQsyTpqs_gA.i65HcDVFCrp8Mm1vqpZ8IS1Ko5q2A3DzXUVAY_yoqfc
+  returns
+    {
+      "amr":["login:credentials","mfa:email"],
+      "aud":["com_jagex_auth_desktop_launcher"],
+      "auth_time":1690362570,
+      "iat":1690362572,
+      "iss":"https://account.jagex.com/",
+      "rat":1690362527,
+      "sub":"2GClstD1FR0UJ4PHP8scKr"
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

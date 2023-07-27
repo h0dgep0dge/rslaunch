@@ -1,0 +1,2 @@
+This is a network capture of the login process of the jagex launcher, along with the corresponding (pre)-master-secret log file needed to decrypt the tls traffic therein
+I've also included a breakdown of the requests, to make it easier to understand
