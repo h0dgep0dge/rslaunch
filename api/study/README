@@ -1,2 +1,4 @@
 This is a network capture of the login process of the jagex launcher, along with the corresponding (pre)-master-secret log file needed to decrypt the tls traffic therein
 I've also included a breakdown of the requests, to make it easier to understand
+
+I know these files contain the details needed to log in to a runescape account! This was on purpose and it uses an email address and runescape account set up specifically for this purpose. I've already recieved an email warning me that i've leaked sensitive information, but seriously guys it's fine

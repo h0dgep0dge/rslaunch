@@ -1,0 +1,4 @@
+I've written 3 programs to demo using the auth process
+    - proof.py was the first i finished, it goes through the entire process and launches runelite at the end, this serves to real purpose other than posterity
+    - setup.py and launch.py are slightly better, setup.py writes a configuration file with the session key, and launch.py uses it to start runelite
+    

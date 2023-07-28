@@ -7,8 +7,6 @@ import requests
 import json
 import random
 import string
-import subprocess
-import os
 
 code_verifier = pkce.generate_code_verifier(length=45)
 code_challenge = pkce.get_code_challenge(code_verifier)
@@ -45,26 +43,6 @@ post_data = {
 
 sessionIdJson = requests.post("https://auth.jagex.com/game-session/v1/sessions",json=post_data).text
 
-jx_session_id = json.loads(sessionIdJson)['sessionId']
-
-accountsJson = requests.get("https://auth.jagex.com/game-session/v1/accounts",headers={"Authorization": "Bearer "+jx_session_id}).text
-accounts = json.loads(accountsJson)
-
-jx_character_id = accounts[0]['accountId']
-jx_display_name = accounts[0]['displayName']
-
-envs = os.environ
-
-envs["JX_ACCESS_TOKEN"]  = ""
-envs["JX_CHARACTER_ID"]  = jx_character_id
-envs["JX_DISPLAY_NAME"]  = jx_display_name
-envs["JX_REFRESH_TOKEN"] = ""
-envs["JX_SESSION_ID"]    = jx_session_id
-
-subprocess.run(["java","-jar","RuneLite.jar"],env=envs)
-
-
-
-
-
-
+f = open("sessionid.json", "w")
+f.write(sessionIdJson)
+f.close()
